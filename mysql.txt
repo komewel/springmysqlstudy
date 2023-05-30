@@ -1,0 +1,43 @@
+mysql: schemas = gdj61(oraclesql):user
+new schemas -> gdj61 -> charset -> utf-8mb4(이모지도 지원해주는 인코딩) -> utf-8mb4bin
+-> apply -> apply 
+
+oraclesql 은 계정마다 따로 비밀번호가 다르게 세팅 되어있었지만 
+mysql은 root / 1111
+		ㄴ sakila
+		ㄴ gdj61 이런 개념이다 
+
+application.properties
+	 uesrname = gdj61  (oraclesql)
+	 password = 1111
+-----------------------
+ 	username=root	(mysql)
+	password=1111
+	
+테이블 만드는법
+	(1)
+	tables에서 우클릭으로 new table 우리가 직접 수동적으로 생성해줄수 있다 
+	설정도 아까 계정처럼 utf-8mb4 / utf-8mb4 bin 으로 하면 된다.
+	apply하면 칼럼을 하나 넣으라는 경고가 뜬다(보통 pk칼럼을 만든다(mysql에서는 소문자 통	일 이런거 없이 무조건 대문자이다, 칼럼의 속성(?)중 AI : auto increment, 자동증가	하는 오라클에서 시퀀스 처럼 동작하므로 대체할수 있다.) 
+	
+	int타입이 종류가 많다 number(1 byte) : tinyint	
+				  number(2 byte) : smallint
+				  number(4 byte) : int     (mysql은 크기별로 int를 만들어놓았	다)
+				 -------------------------------------------------------
+				  decimal(5,2)   : max: 999.99 (소수점 타입)
+	오라클에서는 date 하면 날짜 시간이 다 포함되는 개념이였는데 
+	mysql에서는 따로 존재한다. DATETIME으로 작성하면된다.	
+
+	varchar2(oraclesql) -> varchar(mysql) 뒤에 2를 굳이 안붙여도 된다. BYTE 생략이 가능
+
+	(2)
+	sql+라고 되어있는 아이콘으로 만들수있다.
+ 	이경우엔 사용할 스키마를 지정해야 한다.
+
+	
+테이블 작성하는법
+	만든 테이블 옆에 아이콘 3개가 있는데 1번째는 정보창 2번째는 수정창
+	3번째는 작성창
+
+실행하는법
+	control + shift + enter 		  	 
