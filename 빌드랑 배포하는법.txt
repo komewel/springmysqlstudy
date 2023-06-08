@@ -212,9 +212,32 @@ war파일 이름은 ROOT로 설정 배포하는법은 똑같이 webapps에다가
 실행하는법은 filezilla 에서는 톰캣 실행할때는 startup.sh를 실행해야 한다(리눅스이므로) 실행한다고 더블클릭 누르진 말자 서버에서는 다운로드로 로컬에서는 서버에 올리는걸로 인식하므로 결론적으로 핵심은 실행도구는 따로 있다 filezilla에서는 실행할수가 없다 
 서버(톰캣) 실행은 putty가 하는것이다.
 
+서버 톰캣은 이미 돌아가고 있으므로 startup을 실행하는게 아니라 shutdown을 해야한다.
+작업순서 
+-> 1. shutdown.sh (실행할 프로그램 : putty)
+   2. ROOT.war 라는 빌드 결과를 배포를 위한 webapps에 가져다 둔다 
+      (실행할 프로그램 :filezilla)
+     3. 그리고 다시 startup.sh를 클릭 (실행할 프로그램 : putty)
+	
+/ -> ROOT디렉터리
 톰캣은 우리걸 쓰는게 아니라 cafe24 톰캣을 쓰는것이므로 이미 계속 돌아가고 있다. 
 
 SSH 서버 접속 : putty(툴) 
+구글에 putty 검색 다운로드 페이지 접속 가장 처음 버튼 클릭
+Alternative binary files -> (the SSH and Telnet client itself)로 설명이있는 첫번째(64-bit x86)다운 -> 실행시 hostname 에 cafe24에 서버 아이피 적기(다른건 건들게 없다) -> 매번 
+번거롭게 입력을 안하려고 cafe24하는 session으로 저장을 해둔다. 실행시 open을 해서 accept를 누른다 -> cafe24 아이디와 ftp와 db 비밀번호를 적어주면 된다
+여기서부턴 리눅스 지식이 필요 그러면 ~가 있는데 이건 home디렉터리란 뜻이다  
+리눅스 용어
+.  : 현재 디렉터리 
+.. : 상위 디렉터리
+~  : home 디렉터리
+/  : ROOT 디렉터리
+띄어쓰기 갯수는 상관없다 필요한 부분에 꼭 해주는게 중요(tab , spacebar)
+pwd : 내가 현재 어디있나 위치경로를 알려주는 명령어
+cd : 접속 디렉터리 명령어
+
+[~] $ cd /workship/tomcat/bin : 톰캣에 빈파일에 접근하겠다(통으로 경로를 다 적는 방식) 
+[~] $ cd tomcat/bin  (현재 위치부터 경로 작성 할게요)
 
 구글에 myip검색후 나오는 ip로 외부 ip접근 설정
  
@@ -232,6 +255,10 @@ mysql connection 옆 + 누르고 hostname 에는 cafe24에 서버 ip 적어주�
 	driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
 	jdbc-url: jdbc:log4jdbc:mysql://localhost(카페24의 로컬호스트):3306/	카페24아이디?serverTimezone=Asia/seoul&characterEncoding=UTF-8
+
+------------------------------------------------------------------------------------
+
+Tomcat -> logs 에 로그가 찍힌다 
 	
 
 	 
